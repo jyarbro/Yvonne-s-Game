@@ -8,13 +8,9 @@ public class PopUpText : MonoBehaviour {
 	float durationInverse;
 	float timer;
 
-	public void PopUp(string textBody, Vector3 position) {
+	public void PopUp(string textBody, Vector3 position, Canvas canvas) {
 		var text = GetComponent<Text>();
 		text.text = textBody;
-
-		var gameControllerObject = GameObject.FindWithTag("GameController");
-		var gameController = gameControllerObject.GetComponent<GameController>();
-		var canvas = gameController.Canvas.GetComponent<Canvas>();
 
 		var popupRectTransform = gameObject.GetComponent<RectTransform>();
 		var canvasRectTransform = canvas.GetComponent<RectTransform>();

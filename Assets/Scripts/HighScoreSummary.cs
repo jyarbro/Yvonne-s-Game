@@ -5,8 +5,28 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HighScoreController : MonoBehaviour {
+public class HighScoreSummary : MonoBehaviour {
+	public GameObject HighScoreSummaryTextInstance;
+
 	List<int> highScores;
+
+	Text highScoreSummaryText;
+
+	#region Unity methods
+
+	void Start() {
+		highScoreSummaryText = HighScoreSummaryTextInstance.GetComponent<Text>();
+	} 
+
+	#endregion
+
+	public void StartPlaying() {
+		HighScoreSummaryTextInstance.SetActive(false);
+	}
+
+	public void StopPlaying() {
+		HighScoreSummaryTextInstance.SetActive(true);
+	}
 
 	public void AddScore(int score) {
 		if (score <= 0)
@@ -25,7 +45,6 @@ public class HighScoreController : MonoBehaviour {
 
 		UpdateText();
 
-		PlayerPrefs.SetString("HighScores", JsonUtility.ToJson(highScores));
 		Save();
 	}
 
@@ -37,14 +56,12 @@ public class HighScoreController : MonoBehaviour {
 	}
 
 	void UpdateText() {
-		var text = gameObject.GetComponent<Text>();
-
-		text.text = "Game Over\n\nHigh Scores:";
+		highScoreSummaryText.text = "Game Over\n\nHigh Scores:";
 
 		for (var i = 0; i < highScores.Count; i++) {
 			var score = highScores[i];
 
-			text.text += "\n" + (i + 1) + ") " + score;
+			highScoreSummaryText.text += "\n" + (i + 1) + ") " + score;
 		}
 	}
 
@@ -69,7 +86,5 @@ public class HighScoreController : MonoBehaviour {
 		}
 		else 
 			highScores = new List<int>();
-
-		PlayerPrefs.SetString("HighScores", JsonUtility.ToJson(highScores));
 	}
 }
