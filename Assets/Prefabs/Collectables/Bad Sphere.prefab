@@ -66,9 +66,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707579418503242}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 5.2, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.3}
   m_Children:
   - {fileID: 4359521724866418}
   m_Father: {fileID: 0}
@@ -178,8 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 1303331681894950, guid: 100a2a64c59d43f48b18d11d012ec9db, type: 2}
+  MinSpeed: 4
   MaxSpeed: 50
-  Frequency: 0.6000000238418579
+  Frequency: 0.4000000059604645
   CollectedValuePoints: -50
   MissedValuePoints: 1
   CollectedHealthPoints: -1

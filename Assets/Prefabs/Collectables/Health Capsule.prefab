@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4537848279908012}
   - component: {fileID: 33274988707615958}
   - component: {fileID: 136179637241454202}
-  - component: {fileID: 23948489416290964}
   - component: {fileID: 54720569331841652}
+  - component: {fileID: 23948489416290964}
   - component: {fileID: 114042046321427614}
   - component: {fileID: 198183548918847310}
   - component: {fileID: 199082416460393530}
@@ -42,7 +42,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4336788665397946}
   - component: {fileID: 33473446537847008}
-  - component: {fileID: 65445549598573412}
   - component: {fileID: 23654400904822722}
   m_Layer: 0
   m_Name: Cube (1)
@@ -75,7 +74,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4744459481008890}
   - component: {fileID: 33498568593760336}
-  - component: {fileID: 65263724229614290}
   - component: {fileID: 23329920910172270}
   m_Layer: 0
   m_Name: Cube
@@ -307,30 +305,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65263724229614290
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1893917085626742}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65445549598573412
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1114250166681604}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108201021063937960
 Light:
   m_ObjectHideFlags: 1
@@ -379,8 +353,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 1303331681894950, guid: 100a2a64c59d43f48b18d11d012ec9db, type: 2}
+  MinSpeed: 2
   MaxSpeed: 5
-  Frequency: 0.009999999776482582
+  Frequency: 0.05000000074505806
   CollectedValuePoints: 50
   MissedValuePoints: -100
   CollectedHealthPoints: 2
@@ -458,7 +433,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1708526792
+  randomSeed: 653507604
   InitialModule:
     serializedVersion: 3
     enabled: 1

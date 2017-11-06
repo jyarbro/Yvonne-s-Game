@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4653149703531554}
   - component: {fileID: 33827407190807964}
   - component: {fileID: 136153029337751546}
-  - component: {fileID: 23646331713485072}
   - component: {fileID: 54489014651315600}
+  - component: {fileID: 23646331713485072}
   - component: {fileID: 114119175312923562}
   m_Layer: 0
   m_Name: Good Capsule
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036648921587036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.29, y: 5.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.8, z: 0.3}
   m_Children:
   - {fileID: 4272319891590758}
@@ -178,8 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 1303331681894950, guid: 100a2a64c59d43f48b18d11d012ec9db, type: 2}
+  MinSpeed: 3
   MaxSpeed: 10
-  Frequency: 0.15000000596046448
+  Frequency: 0.20000000298023224
   CollectedValuePoints: 25
   MissedValuePoints: -10
   CollectedHealthPoints: 0

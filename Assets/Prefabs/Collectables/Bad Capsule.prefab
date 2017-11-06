@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4500378242720716}
   - component: {fileID: 33647719066841188}
   - component: {fileID: 136337554316634934}
-  - component: {fileID: 23740124166111876}
   - component: {fileID: 54619535327905430}
+  - component: {fileID: 23740124166111876}
   - component: {fileID: 114203855114252216}
   m_Layer: 0
   m_Name: Bad Capsule
@@ -178,8 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 1303331681894950, guid: 100a2a64c59d43f48b18d11d012ec9db, type: 2}
+  MinSpeed: 3
   MaxSpeed: 50
-  Frequency: 0.5
+  Frequency: 1
   CollectedValuePoints: -25
   MissedValuePoints: 5
   CollectedHealthPoints: -1
