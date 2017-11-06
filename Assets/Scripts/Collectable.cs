@@ -18,19 +18,18 @@ public class Collectable : MonoBehaviour {
 	public int CollectedHealthPoints;
 	public int MissedHealthPoints;
 
-	Rigidbody rigidBody;
+	float velocity;
 	Player player;
 
 	#region Unity methods
 
 	void Start() {
-		rigidBody = GetComponent<Rigidbody>();
+		var rigidBody = gameObject.GetComponent<Rigidbody>();
+		rigidBody.velocity = -transform.up * velocity;
 
 		var playerInstance = GameObject.FindGameObjectWithTag("Player");
 		player = playerInstance.GetComponent<Player>();
 	} 
-
-	#endregion
 
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player"))
@@ -40,17 +39,16 @@ public class Collectable : MonoBehaviour {
 			Missed();
 	}
 
-	public void AdjustVelocity(int modifier) {
+	#endregion
+
+	public void SetVelocityBeforeStart(int modifier) {
 		var maxModifier = modifier * Random.value;
 		var minModifier = modifier * .01F;
 
-		var velocity = MinSpeed + minModifier + maxModifier;
+		velocity = MinSpeed + minModifier + maxModifier;
 
 		if (velocity > MaxSpeed)
 			velocity = MaxSpeed;
-
-		var rigidBody = GetComponent<Rigidbody>();
-		rigidBody.velocity = -transform.up * velocity;
 	}
 
 	void Collected() {

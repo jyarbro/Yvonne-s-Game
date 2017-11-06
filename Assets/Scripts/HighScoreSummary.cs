@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class HighScoreSummary : MonoBehaviour {
 	public GameObject HighScoreSummaryTextInstance;
 
+	bool playing;
+
 	List<int> highScores;
 
 	Text highScoreSummaryText;
@@ -16,24 +18,35 @@ public class HighScoreSummary : MonoBehaviour {
 
 	void Start() {
 		highScoreSummaryText = HighScoreSummaryTextInstance.GetComponent<Text>();
-	} 
+
+		Load();
+
+		StartPlaying();
+	}
 
 	#endregion
 
 	public void StartPlaying() {
+		if (playing)
+			return;
+
+		playing = true;
+
 		HighScoreSummaryTextInstance.SetActive(false);
 	}
 
 	public void StopPlaying() {
+		if (!playing)
+			return;
+
+		playing = false;
+
 		HighScoreSummaryTextInstance.SetActive(true);
 	}
 
 	public void AddScore(int score) {
 		if (score <= 0)
 			return;
-
-		if (highScores == null)
-			Load();
 
 		highScores.Add(score);
 
@@ -49,9 +62,6 @@ public class HighScoreSummary : MonoBehaviour {
 	}
 
 	public int GetHighScore() {
-		if (highScores == null)
-			Load();
-
 		return highScores.FirstOrDefault();
 	}
 

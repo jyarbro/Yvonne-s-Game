@@ -3,7 +3,7 @@
 public class HealthIndicator : MonoBehaviour {
 	public GameObject HealthIndicatorType;
 
-	public void Update(int value) {
+	public void UpdateHealth(int value) {
 		foreach (Transform child in transform)
 			Destroy(child.gameObject);
 

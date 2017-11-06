@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public int StartHealth;
@@ -24,7 +25,12 @@ public class Player : MonoBehaviour {
 		rightMoveLimit = RightWall.transform.position.x - (RightWall.transform.localScale.x / 2);
 
 		score = ScoreInstance.GetComponent<Score>();
+
+		health = StartHealth;
 		healthIndicator = HealthIndicatorInstance.GetComponent<HealthIndicator>();
+		healthIndicator.UpdateHealth(health);
+
+		StartPlaying();
 	}
 
 	void FixedUpdate() {
@@ -37,12 +43,30 @@ public class Player : MonoBehaviour {
 	#endregion
 
 	public void StartPlaying() {
+		if (playing)
+			return;
+
+		if (StartHealth == 0)
+			throw new Exception("StartHealth must be greater than 0");
+
 		health = StartHealth;
 		playing = true;
+
+		if (healthIndicator != null)
+			healthIndicator.UpdateHealth(health);
+
+		if (score != null)
+			score.StartPlaying();
 	}
 
 	public void StopPlaying() {
+		if (!playing)
+			return;
+
 		playing = false;
+
+		if (score != null)
+			score.StopPlaying();
 	}
 
 	public bool IsAlive() {
@@ -62,7 +86,7 @@ public class Player : MonoBehaviour {
 		if (health < 0)
 			health = 0;
 
-		healthIndicator.Update(health);
+		healthIndicator.UpdateHealth(health);
 	}
 
 	void CheckInput() {

@@ -40,7 +40,10 @@ public class Game : MonoBehaviour {
 
 	void StartPlaying() {
 		playing = true;
+
+#if !UNITY_EDITOR
 		Cursor.lockState = CursorLockMode.Locked;
+#endif
 
 		player.StartPlaying();
 		collectables.StartPlaying();

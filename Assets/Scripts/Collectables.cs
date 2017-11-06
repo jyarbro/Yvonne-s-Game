@@ -11,13 +11,29 @@ public class Collectables : MonoBehaviour {
 	bool playing;
 	int wave;
 
+	#region Unity methods
+
+	void Start() {
+		StartPlaying();
+	}
+
+	#endregion
+
 	public void StartPlaying() {
+		if (playing)
+			return;
+
 		playing = true;
+
+		wave = 1;
 
 		StartCoroutine(SpawnWaves());
 	}
 
 	public void StopPlaying() {
+		if (!playing)
+			return;
+
 		playing = false;
 
 		foreach (Transform child in transform)
@@ -27,10 +43,12 @@ public class Collectables : MonoBehaviour {
 	IEnumerator SpawnWaves() {
 		while (playing) {
 			for (var i = 0; i < wave; i++) {
-				SpawnEntity();
+				if (playing) {
+					SpawnEntity();
 
-				var delay = Random.value * SpawnDelay;
-				yield return new WaitForSeconds(delay);
+					var delay = Random.value * SpawnDelay;
+					yield return new WaitForSeconds(delay);
+				}
 			}
 
 			wave = Mathf.CeilToInt(wave * 1.25F);
@@ -41,8 +59,12 @@ public class Collectables : MonoBehaviour {
 		var type = CollectableTypes.Last();
 
 		foreach (var collectable in CollectableTypes) {
-			if (Random.value < collectable.Frequency)
+			var randomValue = Random.value;
+
+			if (randomValue < collectable.Frequency) {
 				type = collectable;
+				break;
+			}
 		}
 
 		var entity = Instantiate(type, transform);
@@ -53,6 +75,6 @@ public class Collectables : MonoBehaviour {
 		var position = new Vector3(x, 0, 0);
 
 		entity.transform.Translate(position);
-		entity.AdjustVelocity(wave);
+		entity.SetVelocityBeforeStart(wave);
 	}
 }

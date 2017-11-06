@@ -12,6 +12,7 @@ public class Score : MonoBehaviour {
 
 	int score;
 	int highestScore;
+	bool playing;
 
 	HighScoreSummary highScoreSummary;
 	Text scoreText;
@@ -27,19 +28,34 @@ public class Score : MonoBehaviour {
 		overlayCanvas = OverlayCanvasInstance.GetComponent<Canvas>();
 
 		highestScore = highScoreSummary.GetHighScore();
+
+		StartPlaying();
 	}
 
 	#endregion
 
 	public void StartPlaying() {
+		if (playing)
+			return;
+
+		playing = true;
 		score = 0;
 
+		highScoreSummary.StartPlaying();
 		highestScore = highScoreSummary.GetHighScore();
-		highScoreText.text = highestScore.ToString();
+
+		scoreText.text = score.ToString();
+		highScoreText.text = "High Score: " + highestScore.ToString();
 	}
 
 	public void StopPlaying() {
+		if (!playing)
+			return;
+
+		playing = false;
+
 		highScoreSummary.AddScore(score);
+		highScoreSummary.StopPlaying();
 	}
 
 	public void UpdateScore(int value, Vector3 location) {
@@ -51,7 +67,7 @@ public class Score : MonoBehaviour {
 		scoreText.text = score.ToString();
 
 		if (score > highestScore)
-			highScoreText.text = score.ToString();
+			highScoreText.text = "High Score: " + score.ToString();
 
 		PointsPopUp(value, location);
 	}
